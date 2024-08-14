@@ -1,10 +1,116 @@
+$primary-color  : #007bff;
+$secondary-color: #6c757d;
+$danger-color   : #dc3545;
+$light-bg       : #f8f9fa;
+$border-radius  : 20px;
+$padding        : 8px 12px;
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin          : 0;
+  padding         : 0;
+  font-family     : 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  background-color: $light-bg;
 }
 
+.nav__header {
+
+  display         : flex;
+  justify-content : space-between; // Distribute space between items
+  align-items     : center;
+  padding         : 10px 50px;
+  background-color: white;
+  box-shadow      : 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .nav__list {
+    display    : flex;
+    align-items: center;
+    flex       : 1; // Allow the nav list to take up available space
+  }
+
+  .nav__item {
+    margin: 0 15px;
+
+    .nav__link {
+      text-decoration: none;
+      color          : #6c757d;
+      font-weight    : 500;
+      transition     : color 0.3s;
+
+      &:hover {
+        color: #007bff;
+      }
+
+      i {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .search__navbar {
+    display      : flex;
+    padding      : 5px 10px;
+    border-radius: 20px;
+    border       : 1px solid #ced4da;
+    transition   : border-color 0.3s;
+    flex         : 1; // Make the search bar take up available space
+    max-width    : 400px; // Limit the max width
+    margin       : 0 auto; // Center the search bar
+
+    &:focus {
+      border-color: #007bff;
+    }
+  }
+
+  .nav__log {
+    position  : relative;
+    right     : 5px;
+    align-self: flex-end;
+
+    .btn {
+      width        : 80px;
+      color        : #ced4da;
+      cursor       : pointer;
+      border       : none;
+      padding      : 8px 12px;
+      border-radius: 20px;
+      font-weight  : 500;
+      transition   : background-color 0.3s;
+      margin-left  : 10px;
+
+      &.btn-profile {
+        background-color: #6c757d;
+        color           : white;
+
+        &:hover {
+          background-color: darken(#6c757d, 10%);
+        }
+      }
+
+      &.btn-logout {
+        background-color: #68686a;
+        color           : rgb(255, 250, 250);
+
+        &:hover {
+          background-color: darken(#666262, 10%);
+        }
+      }
+    }
+  }
+}
+
+
+.avatar {
+  width        : 40px;
+  height       : 40px;
+  display      : flex;
+  align-items  : center;
+  align-items  : center;
+  margin       : 20px 20px;
+
+  .circle-image {
+    width        : 100%;
+    height       : 100%;
+    border-radius: 50%;
+    object-fit   : cover;
+  }
+}

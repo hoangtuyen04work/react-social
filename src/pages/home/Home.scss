@@ -1,0 +1,25 @@
+.home-container {
+    display       : flex;
+    flex-direction: column;
+    height        : 100vh;
+    margin        : 0 70px;
+    overflow: hidden;
+    .content-container {
+        margin: 40px 0;
+        gap: 50px;
+        height : 100vh;
+        display              : grid;
+        grid-template-columns: 16% 60% 16%;
+        /* Adjust column widths as needed */
+    }
+}
+
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .content-container {
+        display       : flex;
+        flex-direction: column;
+    }
+}

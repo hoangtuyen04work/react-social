@@ -1,0 +1,19 @@
+.nav-right {
+    background-color: beige;
+    border-radius   : 15px;
+    height          : 100%;
+    .title {
+        margin-top     : 20px;
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+        font-weight    : 600;
+        font-size      : 30px;
+    }
+
+    .list-item {
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+    }
+}

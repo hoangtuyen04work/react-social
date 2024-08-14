@@ -1,0 +1,20 @@
+.posts {
+    border-radius: 15px;
+    margin       : 0 30px;
+    max-height   : 600px;
+    /* Thay đổi giá trị này tùy theo nhu cầu */
+    overflow-y   : auto;
+
+    .new-post {
+        align-items     : center;
+        display         : flex;
+        justify-content : center;
+        border-radius   : 15px;
+        border          : 1px solid #bcadad;
+        margin          : 20px;
+        margin-bottom: 35px;
+        height          : 30px;
+        width: calc(100% - 40px);
+    }
+
+}
