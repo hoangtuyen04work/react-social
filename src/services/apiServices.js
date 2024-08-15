@@ -6,7 +6,15 @@ const postCreateNewUser = (userId, userName, password) => {
         userName: userName,
         password: password
     }
-    return axios.post('socialnetwork/new', data)
+    return axios.post('socialnetwork/signup', data)
 }
 
-export { postCreateNewUser };
+const getLogin = (userId, password) => {
+    let data = {
+        userId: userId,
+        password: password
+    }
+    return axios.get('socialnetwork/login', data)
+}
+
+export { postCreateNewUser, getLogin };

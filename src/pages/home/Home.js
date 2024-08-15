@@ -7,19 +7,12 @@ import './Home.scss'
 
 
 const Home = (props) => {
-    const {offLogin} =  props 
-    const handleOffLogin = () => {
-        offLogin(false)
-    }
     return (
-        <div className="home-container">
-            < Header offLogin={handleOffLogin}/>
             <div className="content-container">
                 <Navleft />
                 <Posts />
                 <Navright />
             </div>
-        </div>
     );
 }
 

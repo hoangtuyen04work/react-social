@@ -1,18 +1,13 @@
-.home-container {
-    display       : flex;
-    flex-direction: column;
-    height        : 100vh;
-    margin        : 0 70px;
-    overflow: hidden;
+
     .content-container {
-        margin: 40px 0;
+        margin: 20px 0;
         gap: 50px;
-        height : 100vh;
+        height : 80%;
         display              : grid;
         grid-template-columns: 16% 60% 16%;
+        margin-bottom: 30px;
         /* Adjust column widths as needed */
     }
-}
 
 
 

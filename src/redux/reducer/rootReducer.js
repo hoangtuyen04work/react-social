@@ -1,11 +1,10 @@
 
-import {
-    combineReducers
-} from 'redux';
-import counterReducer from './counterReducer';
+
+import { combineReducers } from 'redux';
+import userReducer from './userReducer'; // Import userReducer
 
 const rootReducer = combineReducers({
-    counter: counterReducer,
+    user: userReducer, // Thêm userReducer vào rootReducer
 });
 
 export default rootReducer;

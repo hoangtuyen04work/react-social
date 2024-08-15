@@ -1,8 +1,12 @@
-.left{
-    margin: 20px;
-    display: flex;
-    align-items: center;
-    .item-name{
-        margin-left: 5px;
+.item {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    text-decoration: none;
+    color          : #6c757d;
+    font-weight    : 500;
+    transition     : color 0.3s;
+    &:hover {
+        color: #007bff;
     }
 }
