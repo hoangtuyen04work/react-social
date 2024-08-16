@@ -10,20 +10,23 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Post = (props) => {
+    const [id, setId] = useState(props.id);
     const navigate = useNavigate();
     const handleOnclickAvatar = () => {
         navigate(`/profile?id=${props.id}`)
     }
     const [liked, setLiked] = useState(false);
-    const [onComment, setOnComment] = useState(true);
+    const [onComment, setOnComment] = useState(false);
     const handleLikeClick = () => {
         setLiked(!liked);
     }
+
     const handleOnComment = () => {
         setOnComment(!onComment)
+        
     }
 
-    return (
+     return (
         <div className="post">
             <div className="header-post" onClick={handleOnclickAvatar}>
                 <div className="post__left">
@@ -66,10 +69,11 @@ const Post = (props) => {
                 <div className="footer-right">
                     {
                         onComment && (
-                            <Comments/>
+                            <Comments id={id} onClose={handleOnComment} />
                         )
                     }
-                    <div className = "comment"onClick = {handleOnComment} >
+
+                    <div className = "comment" onClick = {handleOnComment} >
                         <FaRegComment />
                     </div>
                     <div className="number-comment">

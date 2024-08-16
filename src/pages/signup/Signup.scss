@@ -20,18 +20,23 @@
             justify-content: center;
         }
 
-        .input {
+        .inputs {
             display       : flex;
             align-items   : center;
             flex-direction: column;
             gap           : 10px;
 
-            .input1 {
-                border-radius: 4px;
-            }
-
-            .input2 {
-                border-radius: 4px;
+            .input {
+                display: flex;
+                flex-direction: column;
+                .error-message {
+                    color        : red;
+                    font-size    : 12px;
+                    margin-top   : 5px;
+                    margin-bottom: 5px;
+                    text-align   : left;
+                    width        : 100%;
+                }
             }
         }
 

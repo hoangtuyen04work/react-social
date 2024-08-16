@@ -10,12 +10,10 @@ body {
   padding         : 0;
   font-family     : 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
   background-color: $light-bg;
-  height: 100%;
 }
 
-.header_container{
-  height: 100%;
-}
+
+
 
 .nav__header {
 
@@ -37,11 +35,13 @@ body {
     justify-content: center;
     align-items    : center;
     display        : flex;
-    .title__web{
-      font-weight: 700;
-      font-size: 1.5em;
+
+    .title__web {
+      font-weight : 700;
+      font-size   : 1.5em;
       margin-right: 20px;
     }
+
     .nav__link {
       text-decoration: none;
       color          : #6c757d;
@@ -62,7 +62,9 @@ body {
     }
   }
 
-  .search__navbar {
+  .search__bar {
+    justify-content: center;
+    align-items: center;
     display      : flex;
     padding      : 5px 10px;
     border-radius: 20px;
@@ -74,6 +76,19 @@ body {
 
     &:focus {
       border-color: #007bff;
+    }
+
+    .search__input {
+      flex: 1;
+      border: none;
+      outline: none;
+    }
+    .search__icon{
+      font-size: 25px;
+      display: flex;
+      &:hover{
+        color: #007bff;
+      }
     }
   }
 
@@ -212,7 +227,7 @@ body {
   height     : 100px;
   display    : flex;
   align-items: center;
-  margin     : 10px 20px;
+  margin     : 10px 10px;
 
   .circle-image-normal {
     width        : 100%;
@@ -227,7 +242,7 @@ body {
   height     : 35px;
   display    : flex;
   align-items: center;
-  margin     : 10px 20px;
+  margin     : 10px 10px;
 
   .circle-image-small {
     width        : 100%;

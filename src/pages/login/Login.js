@@ -23,13 +23,18 @@ const Login = () => {
 
     return (
         <div className="login">
-            <form form className = "login-form" onSubmit = {() => handleOnSubmit()}>
+            <form className = "login-form" onSubmit = {() => handleOnSubmit()}>
                 <div className="login-title">
                     Title
                 </div>
-                <div className="input">
-                    <input onChange={(event)=>handleUserIdChange(event)} value={userId} type="text" className="input input1" placeholder="UserId"/>
-                    <input onChange={(event)=>handlePasswordChange(event)} value={password} type="password" className="input input2"  placeholder="Password"/>
+                <div className="inputs">
+                    <div className="input">
+                        <input onChange={(event)=>handleUserIdChange(event)} value={userId} type="text" className="input input1" placeholder="UserId"/>
+                    
+                    </div>
+                    <div className="input">
+                        <input onChange={(event)=>handlePasswordChange(event)} value={password} type="password" className="input input2"  placeholder="Password"/>
+                    </div>
                 </div>
                 <div className="login-confirm">
                     <button className="btn btn-login">

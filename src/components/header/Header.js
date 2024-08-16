@@ -7,7 +7,7 @@ import {
   useNavigate
 } from 'react-router-dom';
 import { FaHome } from "react-icons/fa";
-
+import { IoSearchOutline } from "react-icons/io5";
 
 const Header = (props) => {
   const navigate = useNavigate();
@@ -37,9 +37,14 @@ const Header = (props) => {
           </NavLink>
         </span>
 
-        <input
-          onChange={(event) => handleOnChange(event)}
-          placeholder="Search" className="nav__item search__navbar" />
+        <div className="search__bar">
+          <input
+            onChange={(event) => handleOnChange(event)}
+            placeholder="Search or enter people or post" className="nav__item search__input" />
+          <div className="search__icon">
+            <IoSearchOutline/>
+            </div>
+        </div>
         <div className="nav__log">
           <div className="profile-header" onClick={handleProfileClick}>
             <Avatar/>

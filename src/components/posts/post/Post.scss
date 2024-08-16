@@ -5,7 +5,6 @@
     border-radius   : 20px;
     background-color: beige;
     margin          : 20px 0;
-
     .header-post {
         display        : inline-flex;
         justify-content: space-between;
@@ -13,49 +12,41 @@
         height         : 50px;
         margin-top     : 10px;
         margin         : 20px;
-
         .post__left {
             display        : inline-flex;
             align-items    : center;
             justify-content: center;
-
             .poster {
                 font-weight: 600;
             }
         }
+        .post__right {
 
-        .post__right {}
+        }
     }
-
     .body-post {
         // border       : 1px solid #333;
         border-radius: 20px;
         margin       : 20px 30px;
-
         .content-post {
             margin       : 30px;
             margin-bottom: 20px;
         }
-
         .image {
             justify-content: center;
             align-items    : center;
             display        : flex;
         }
     }
-
     .footer-post {
         display        : inline-flex;
         justify-content: space-between;
         align-items    : center;
         margin         : 20px 80px;
         font-weight    : 500;
-
         .footer-left {
             display: inline-flex;
             gap    : 20px;
-            
-
             .like {
                 font-size: 24px;
                 display        : flex;
@@ -63,7 +54,6 @@
                 justify-content: center;
                 cursor         : pointer;
                 transition     : background-color 0.3s, color 0.3s;
-
                 &:hover {
                     color           : #ff4d4f;
                     border-radius   : 50%;

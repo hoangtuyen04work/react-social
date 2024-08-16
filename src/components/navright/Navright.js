@@ -13,18 +13,10 @@ const Navright = () => {
     const [showMessage, setShowMessage] = useState(false);
     const [messageId, setMessageId] = useState();
     const handleCloseMessage = () => {
-        //get message from backend
-        //data after get from backend//
-        // setMessages(...messages, test)
-        // setMessages({})
         setShowMessage(false);
     }
-
     const handleItemClick = async (id) => {
-        // setMessages(...messages, fakeData)
         setShowMessage(true);
-        // navigate(`/message`);
-        // navigate(`/profile/${id}`);
     }
     
     return (

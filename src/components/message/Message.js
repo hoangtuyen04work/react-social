@@ -25,9 +25,6 @@ const Message = ({ id, onClose }) => {
         }
     }, [messages, isVisible]);
 
-    const toggleVisibility = () => {
-        setIsVisible(!isVisible);
-    };
 
     return (
         <>
@@ -63,7 +60,7 @@ const Message = ({ id, onClose }) => {
                 </div>
                 <div className="messages-input">
                     <input type="text" placeholder="Type a message..." />
-                    <button><IoMdSend /></button>
+                    <button className="message__send"><IoMdSend /></button>
                 </div>
             </div>
 
