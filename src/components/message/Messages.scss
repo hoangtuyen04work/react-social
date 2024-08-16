@@ -1,0 +1,161 @@
+.messages-container {
+    position        : fixed;
+    bottom          : 0;
+    right           : calc(20% + 5px);
+    width           : 300px;
+    background-color: #fff;
+    border          : 1px solid #ccc;
+    border-radius   : 8px;
+    box-shadow      : 0 0 10px rgba(0, 0, 0, 0.1);
+    height          : 60vh;
+    display         : flex;
+    flex-direction  : column;
+
+
+
+    .messages-header {
+        display         : flex;
+        justify-content : space-between;
+        background-color: #007bff;
+        color           : white;
+        border-radius   : 8px 8px 0 0;
+        border          : 1px solid #8b8a93;
+
+        .header-right {
+            display      : flex;
+            align-items  : center;
+            cursor       : pointer;
+            border-radius: 8px 0 0 0;
+
+            &:hover {
+                background-color: darken(#6060ea, 10%);
+            }
+
+            /* Ensure all items align vertically in the center */
+
+            .header-name {
+                font-weight : 600;
+                margin-right: 10px;
+                /* Add some spacing between the name and the close button */
+            }
+
+
+        }
+
+        .header-closes {
+            background-color: #007bff;
+            padding         : 10px;
+            border          : none;
+            border-radius   : 0px 8px 0 0px;
+
+            &:hover {
+                background-color: darken(#6060ea, 10%);
+            }
+
+            /* Optional padding for better click area */
+        }
+    }
+
+    .messages-body {
+        flex          : 1;
+        /* This makes the messages-body take up the remaining space */
+        overflow-y    : auto;
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+
+
+        .avatar-messager,
+        .messager {
+            font-weight    : 700;
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            /* Center content horizontally */
+            margin-bottom  : 10px;
+        }
+
+        /* Ensures messages stack vertically */
+
+
+        .messages {
+            width         : 100%;
+            display       : flex;
+            flex-direction: column;
+            align-items   : center;
+
+
+            .send {
+                align-self      : flex-start;
+                /* Align sent messages to the left */
+                background-color: #007bff;
+                margin-left     : 5px;
+
+                &:hover {
+                    background-color: darken(#6060ea, 10%);
+                }
+            }
+
+            .receive {
+                align-self      : flex-end;
+                /* Align received messages to the right */
+                background-color: #776d6d;
+
+                &:hover {
+                    background-color: darken(#666262, 10%);
+                }
+
+                margin-right: 5px;
+            }
+
+            .messages-message {
+                margin-bottom: 10px;
+                max-width    : 70%;
+                padding      : 8px 12px;
+                border-radius: 10px;
+                color        : #fff;
+                word-wrap    : break-word;
+                /* Break long words onto the next line if necessary */
+                white-space  : pre-wrap;
+                /* Keep whitespaces and allow text to wrap */
+            }
+        }
+    }
+
+
+
+    .messages-input {
+        display   : flex;
+        padding   : 10px;
+        border-top: 1px solid #ccc;
+    }
+
+    .messages-input input {
+        flex         : 1;
+        padding      : 5px;
+        border       : 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .messages-input button {
+        margin-left     : 10px;
+        padding         : 5px 10px;
+        background-color: #007bff;
+        color           : white;
+        border          : none;
+        border-radius   : 8px;
+
+        &:hover {
+            background-color: darken(#6060ea, 10%);
+        }
+    }
+        &.hidden {
+        transform: translateY(100%);
+        opacity  : 0;
+    }
+
+    &.visible {
+        transform: translateY(0);
+        opacity  : 1;
+    }
+}

@@ -1,5 +1,4 @@
-import { Nav } from "react-bootstrap";
-import Header from "../../components/header/Header";
+
 import Navleft from "../../components/navleft/Navleft";
 import Posts from "../../components/posts/Posts";
 import Navright from "../../components/navright/Navright";

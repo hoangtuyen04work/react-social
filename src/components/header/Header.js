@@ -6,6 +6,7 @@ import Avatar from "../avatar/Avata";
 import {
   useNavigate
 } from 'react-router-dom';
+import { FaHome } from "react-icons/fa";
 
 
 const Header = (props) => {
@@ -27,9 +28,12 @@ const Header = (props) => {
     <header className="nav__header">
       <span className="nav__list">
         <span className="nav__item">
+          <span className="title__web">
+            Social Media
+          </span>
           <NavLink to="/" className="nav__link">
-            Home
-            <i className="fa-solid fa-house"></i>
+            <FaHome />
+            <span className="home-header"> Home</span>
           </NavLink>
         </span>
 

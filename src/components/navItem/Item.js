@@ -3,7 +3,7 @@ import Avatar from '../avatar/Avata';
 
 const Item = ({ id, onClick }) => {
     const handleClick = () => {
-        if (onClick) onClick(id);
+        onClick(id);
     };
 
     return (

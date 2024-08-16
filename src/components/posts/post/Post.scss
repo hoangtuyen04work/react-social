@@ -7,71 +7,100 @@
     margin          : 20px 0;
 
     .header-post {
-        display         : flex;
-        align-items     : center;
-        height          : 50px;
-        margin-top: 10px;
-        margin: 20px;
-        .poster {
-            font-weight: 600;
+        display        : inline-flex;
+        justify-content: space-between;
+        align-items    : center;
+        height         : 50px;
+        margin-top     : 10px;
+        margin         : 20px;
+
+        .post__left {
+            display        : inline-flex;
+            align-items    : center;
+            justify-content: center;
+
+            .poster {
+                font-weight: 600;
+            }
         }
+
+        .post__right {}
     }
 
     .body-post {
-        border       : 1px solid #333;
+        // border       : 1px solid #333;
         border-radius: 20px;
         margin       : 20px 30px;
 
-    
         .content-post {
-            margin  : 30px;
+            margin       : 30px;
             margin-bottom: 20px;
         }
-        .image{
+
+        .image {
             justify-content: center;
-            align-items: center;
-            display: flex;
-        }
-
-    }
-
-    .detail-post {
-        display        : inline-flex;
-        justify-content: space-between; // Distribute space between items
-        align-items    : center;
-        margin         : 0 80px;
-        font-weight    : 500;
-
-        .number-like {
-            border         : 1px solid #333;
-            border-radius  : 20px;
-            width          : 100px;
+            align-items    : center;
             display        : flex;
-            justify-content: center;
-        }
-
-        .number-comment {
-            border         : 1px solid #333;
-            border-radius  : 20px;
-            width          : 100px;
-            display        : flex;
-            justify-content: center;
         }
     }
 
     .footer-post {
         display        : inline-flex;
-        justify-content: space-between; // Distribute space between items
+        justify-content: space-between;
         align-items    : center;
         margin         : 20px 80px;
         font-weight    : 500;
 
-        .like {
+        .footer-left {
+            display: inline-flex;
+            gap    : 20px;
+            
 
+            .like {
+                font-size: 24px;
+                display        : flex;
+                align-items    : center;
+                justify-content: center;
+                cursor         : pointer;
+                transition     : background-color 0.3s, color 0.3s;
+
+                &:hover {
+                    color           : #ff4d4f;
+                    border-radius   : 50%;
+                }
+            }
+
+            .number-like {
+                display        : flex;
+                justify-content: center;
+            }
         }
 
-        .comment {
+        .footer-right {
+            display    : inline-flex;
+            align-items: center;
+            gap        : 10px;
 
+            .comment {
+                font-size: 24px;
+                display        : flex;
+                align-items    : center;
+                justify-content: center;
+                cursor         : pointer;
+                transition     : background-color 0.3s, color 0.3s;
+
+                &:hover {
+                    color           : #007bff;
+                    border-radius   : 50%;
+                }
+            }
+
+            .number-comment {
+
+                width          : 100px;
+                display        : flex;
+                justify-content: center;
+            }
         }
     }
 }

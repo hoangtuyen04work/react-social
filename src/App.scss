@@ -10,6 +10,11 @@ body {
   padding         : 0;
   font-family     : 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
   background-color: $light-bg;
+  height: 100%;
+}
+
+.header_container{
+  height: 100%;
 }
 
 .nav__header {
@@ -28,20 +33,31 @@ body {
   }
 
   .nav__item {
-    margin: 0 15px;
-
+    margin         : 0 10px;
+    justify-content: center;
+    align-items    : center;
+    display        : flex;
+    .title__web{
+      font-weight: 700;
+      font-size: 1.5em;
+      margin-right: 20px;
+    }
     .nav__link {
       text-decoration: none;
       color          : #6c757d;
       font-weight    : 500;
       transition     : color 0.3s;
+      margin         : 20px;
+      justify-content: center;
+      align-items    : center;
+      display        : flex;
 
       &:hover {
         color: #007bff;
       }
 
-      i {
-        margin-left: 5px;
+      .home-header {
+        margin-left: 10px;
       }
     }
   }
@@ -140,6 +156,7 @@ body {
     }
 
   }
+
   .info {
     display       : flex;
     flex-direction: column;
@@ -180,9 +197,39 @@ body {
   display    : flex;
   align-items: center;
   align-items: center;
-  margin     : 20px 20px;
+  margin     : 10px 10px;
 
   .circle-image {
+    width        : 100%;
+    height       : 100%;
+    border-radius: 50%;
+    object-fit   : cover;
+  }
+}
+
+.avatar-normal {
+  width      : 100px;
+  height     : 100px;
+  display    : flex;
+  align-items: center;
+  margin     : 10px 20px;
+
+  .circle-image-normal {
+    width        : 100%;
+    height       : 100%;
+    border-radius: 50%;
+    object-fit   : cover;
+  }
+}
+
+.avatar-small {
+  width      : 35px;
+  height     : 35px;
+  display    : flex;
+  align-items: center;
+  margin     : 10px 20px;
+
+  .circle-image-small {
     width        : 100%;
     height       : 100%;
     border-radius: 50%;
