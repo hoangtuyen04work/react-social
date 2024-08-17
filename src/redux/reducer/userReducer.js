@@ -1,5 +1,5 @@
 
-import { CREATE_USER } from '../action/userAction'
+import { CREATE_USER, OFF_SEARCH, ON_SEARCH, RELOAD } from '../action/userAction'
 import { LOGIN } from '../action/userAction'
 import { LOGOUT } from '../action/userAction'
 
@@ -12,7 +12,8 @@ const INITIAL_STATE = {
         roles: [],
         id: ''
     },
-    isAuthenticated: false
+    isAuthenticated: false,
+    isSearch: false
 }
 
 
@@ -53,6 +54,17 @@ const userReducer = (state = INITIAL_STATE, action) =>{
                     role: ""
                 },
                 isAuthenticated : false
+            }
+        case RELOAD: return state;
+        case ON_SEARCH: 
+            return {
+                ...state,
+                isSearch: true
+            }
+        case OFF_SEARCH:
+            return {
+                ...state,
+                isSearch: false
             }
         default: return state;
     }

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navigate, NavLink } from "react-router-dom";
-import { doLogout } from "../../redux/action/userAction";
+import { doLogout, doOffSearch, doOnSearch } from "../../redux/action/userAction";
 import { useDispatch } from "react-redux";
 import Avatar from "../avatar/Avata";
 import {
@@ -8,10 +8,24 @@ import {
 } from 'react-router-dom';
 import { FaHome } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
-
-const Header = (props) => {
+import { useSelector } from "react-redux";
+import { useReload } from "../../context/ReloadContext";
+const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+
+
+
+
+  const { setPostsKey } = useReload();
+
+
+
+
+  
+  const [userId, setUserId] = useState(useSelector(state => state.user.user.userId));
+  const [userName, setUserName] = useState(useSelector(state => state.user.user.userName));
   const handleOnChange = (event) => {
     return (
       console.log(">>>>> Value" +  event.target.value)
@@ -24,6 +38,13 @@ const Header = (props) => {
   const handleProfileClick = () => {
     navigate('/profile')
   }
+  const handleHomeClick = () => {
+    dispatch(doOffSearch())
+    setPostsKey(prevKey => prevKey  + 1)
+  }
+  const handleSearchClick = () => {
+    dispatch(doOnSearch())
+  }
   return (
     <header className="nav__header">
       <span className="nav__list">
@@ -31,7 +52,7 @@ const Header = (props) => {
           <span className="title__web">
             Social Media
           </span>
-          <NavLink to="/" className="nav__link">
+          <NavLink to = "/"className = "nav__link"onClick = {handleHomeClick} >
             <FaHome />
             <span className="home-header"> Home</span>
           </NavLink>
@@ -41,11 +62,19 @@ const Header = (props) => {
           <input
             onChange={(event) => handleOnChange(event)}
             placeholder="Search or enter people or post" className="nav__item search__input" />
-          <div className="search__icon">
+          <div className="search__icon" onClick = {handleSearchClick}>
             <IoSearchOutline/>
             </div>
         </div>
         <div className="nav__log">
+          <div className="user" onClick={handleProfileClick}>
+            <div className="userName">
+              {userName}
+            </div>
+            <div className="userId">
+              {userId}
+            </div>
+          </div>
           <div className="profile-header" onClick={handleProfileClick}>
             <Avatar/>
           </div>

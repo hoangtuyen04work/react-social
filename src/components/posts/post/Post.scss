@@ -4,14 +4,13 @@
     align-items     : center;
     border-radius   : 20px;
     background-color: beige;
-    margin          : 20px 0;
+    margin-bottom: 10px;
     .header-post {
         display        : inline-flex;
         justify-content: space-between;
         align-items    : center;
         height         : 50px;
-        margin-top     : 10px;
-        margin         : 20px;
+        margin         :  20px 20px 0 20px ;
         .post__left {
             display        : inline-flex;
             align-items    : center;
@@ -27,10 +26,9 @@
     .body-post {
         // border       : 1px solid #333;
         border-radius: 20px;
-        margin       : 20px 30px;
+        margin       : 10px 30px;
         .content-post {
-            margin       : 30px;
-            margin-bottom: 20px;
+            margin       : 0 20px 10px 20px;
         }
         .image {
             justify-content: center;

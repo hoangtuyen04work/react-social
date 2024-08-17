@@ -1,33 +1,58 @@
 import Item from '../navItem/Item';
-import './Navleft.scss'
-import { Navigate } from 'react-router-dom';
-import {
-    useNavigate
-} from 'react-router-dom';
+import './Navleft.scss';
+import { useNavigate } from 'react-router-dom';
+import { getFriends } from '../../services/apiServices';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 const Navleft = () => {
     const navigate = useNavigate();
-    const handleItemClick = async (id) => {
-        navigate("/profile");
-        // navigate(`/profile/${id}`);
-    }
+    const [id, setId] = useState(useSelector(state => state.user.user.id));
+
+    const [listFriends, setListFriends] = useState([]);
+    const [offset, setOffset] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+
+    const getAddFriends = async (offset) => {
+        let data = await getFriends(id, offset);
+        if (data && data.code === 1000) {
+            if (data.data.length > 0) {
+                setListFriends(prev => [...prev, ...data.data]);
+            } else {
+                setHasMore(false);
+            }
+        } else {
+            alert("Can't get data from server", data.code);
+        }
+    };
+
+    useEffect(() => {
+        getAddFriends(offset);
+    }, [offset]);
+
+    const handleItemClick = (id) => {
+        navigate(`/profile/${id}`);
+    };
+
+    const handleScroll = (event) => {
+        const { scrollTop, scrollHeight, clientHeight } = event.target;
+        if (scrollTop + clientHeight >= scrollHeight && hasMore) {
+            setOffset(prev => prev + 1);
+        }
+    };
+
     return (
-        <div className="nav-left">
+        <div className="nav-left" onScroll={handleScroll}>
             <div className="title">
                 Friends
             </div>
             <div className="list-item">
-                <Item id="1" onClick={handleItemClick}/>
-                <Item id="2" onClick={handleItemClick}/>
-                <Item id="3" onClick={handleItemClick}/>
-                <Item id="4" onClick={handleItemClick}/>
-                <Item id="5" onClick={handleItemClick}/>
-                <Item id="6" onClick={handleItemClick}/>
-                <Item id="7" onClick={handleItemClick}/>
-                <Item id="8" onClick={handleItemClick}/>
-                <Item id="9" onClick={handleItemClick}/>
-                <Item id="10" onClick={handleItemClick}/>
+                {listFriends.map((friend, index) => (
+                    <Item key={friend.id} id={friend.id} onClick={() => handleItemClick(friend.id)} />
+                ))}
             </div>
         </div>
-    )
-}
+    );
+};
+
 export default Navleft;

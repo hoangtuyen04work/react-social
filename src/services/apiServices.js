@@ -1,3 +1,4 @@
+
 import axios from '../utils/axiosUtil'
 
 const postCreateNewUser = (userId, userName, password) => {
@@ -9,12 +10,51 @@ const postCreateNewUser = (userId, userName, password) => {
     return axios.post('socialnetwork/signup', data)
 }
 
-const getLogin = (userId, password) => {
+const postLogin = (userId, password) => {
     let data = {
         userId: userId,
         password: password
     }
-    return axios.get('socialnetwork/login', data)
+    return axios.post('socialnetwork/login', data)
 }
 
-export { postCreateNewUser, getLogin };
+const getFriends = (id, offset) => {
+    return axios.get(`socialnetwork/friend/${id}/${offset}`)
+}
+
+const getCountFriend = (id) => {
+    return axios.get(`socialnetwork/friend/count/${id}`)
+}
+
+const deleteFriend = (id) => {
+    return axios.delete(`socialnetwork/friend/${id}`)
+}
+
+const postAddFriend = (id) => {
+    return axios.post(`socialnetwork/friend/${id}`)
+}
+const postNewPost = (data) => {
+    return axios.post(`socialnetwork/post/new`, data)
+}
+
+const getAllPost = (id) => {
+    return axios.get(`socialnetwork/posts/${id}`)
+}
+
+const getAPost = (id) => {
+    return axios.get(`socialnetwork/post/${id}`)
+}
+
+const editPost = (id) => {
+    return axios.put(`socialnetwork/post/edit/${id}`)
+}
+
+const deletePost = (id) => {
+    return axios.delete(`socialnetwrok/post/delete/${id}`)
+}
+
+export {
+    postCreateNewUser, postLogin,
+    getFriends, getCountFriend, deleteFriend, postAddFriend,
+    postNewPost, getAllPost, getAPost, deletePost, editPost, 
+};

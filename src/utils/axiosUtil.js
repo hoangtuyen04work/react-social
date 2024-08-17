@@ -1,4 +1,5 @@
 import axios from "axios";
+import { store } from '../redux/store'
 
 const instance = axios.create({
     baseURL: 'http://localhost:8080/'
@@ -7,6 +8,8 @@ const instance = axios.create({
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
     // Do something before request is sent
+    const token = store?.getState()?.user?.user?.token;
+    config.headers["Authorization"] = "Bearer " + token;
     return config;
 }, function (error) {
     // Do something with request error
@@ -17,6 +20,7 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     //
+
     return response && response.data ? response.data : response;
 }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger

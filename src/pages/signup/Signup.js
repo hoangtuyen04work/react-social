@@ -12,7 +12,6 @@ const Signup = (props) => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
-
     // Refs for the input fields
     const userIdRef = useRef(null);
     const userNameRef = useRef(null);
@@ -76,7 +75,7 @@ const Signup = (props) => {
                     SignUp
                 </div>
                 <div className="inputs">
-                    <div className="input">
+                    <div className="input-container">
                         <input
                             ref={userIdRef}
                             onChange={handleUserIdChange}
@@ -86,9 +85,9 @@ const Signup = (props) => {
                             className="input"
                             placeholder="UserId"
                         />
-                        {errors.userId && <span className="error-message">{errors.userId}</span>}
+                            {errors.userId && <span className="error-message">{errors.userId}</span>}
                     </div>
-                    <div className="input">
+                    <div className = "input-container" >
                         <input
                             ref={userNameRef}
                             onChange={handleUserNameChange}
@@ -100,7 +99,7 @@ const Signup = (props) => {
                         />
                         {errors.userName && <span className="error-message">{errors.userName}</span>}
                     </div>
-                    <div className="input">
+                    <div className = "input-container" >
                         <input
                             ref={passwordRef}
                             onChange={handlePasswordChange}
@@ -112,7 +111,7 @@ const Signup = (props) => {
                         />
                         {errors.password && <span className="error-message">{errors.password}</span>}
                     </div>
-                    <div className="input">
+                    <div className = "input-container" >
                         <input
                             ref={confirmPasswordRef}
                             onChange={handleConfirmPasswordChange}
