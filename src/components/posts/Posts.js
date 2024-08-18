@@ -143,7 +143,7 @@ const Posts = (props) => {
                                             :
                                             postId.map((postid, index) => (
                                                 <div key={index}>
-                                                    <Post id={postid}/>
+                                                    <Post postid={postid} />
                                                 </div>
                                             ))
                                     }
@@ -159,10 +159,11 @@ const Posts = (props) => {
                             </div>
                         :
                         postId.map((postid, index) => (
-                            <div key={index}>
-                                <Post id={postid}/>
-                            </div>
-                        ))
+                                                <div key={index}>
+                                                    <Post postid={postid}/>
+                                                    
+                                                </div>
+                                            ))
                         }
                     </>
                 }

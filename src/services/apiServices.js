@@ -39,7 +39,7 @@ const getAllPost = (id) => {
 }
 
 const getAPost = (id) => {
-    return axios.get(`socialnetwork/post/${id}`)
+    return axios.get(`socialnetwork/post/apost/${id}`);
 }
 
 const editPost = (id) => {

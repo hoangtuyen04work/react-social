@@ -11,14 +11,17 @@ import { getAPost, deletePost } from '../../../services/apiServices'; // Import 
 import { useReload } from '../../../context/ReloadContext';
 
 
-const Post = ({id}) => {
-    const [postId, setPostId] = useState(id);
-    const [post, setPost] = useState({posterName: "", });
+const Post = ({postid}) => {
+    const [postId, setPostId] = useState(postid);
+    const [post, setPost] = useState({
+        posterName: "",
+        content: ""
+    });
     const [showOptions, setShowOptions] = useState(false); // State để điều khiển hiển thị menu tùy chọn
     const navigate = useNavigate();
     const { setPostsKey } = useReload();
     const handleOnclickAvatar = () => {
-        navigate(`/profile?id=${id}`)
+        navigate(`/profile?id=${postid}`)
     }
 
     const [liked, setLiked] = useState(false);
@@ -27,17 +30,14 @@ const Post = ({id}) => {
     const handleLikeClick = () => {
         setLiked(!liked);
     }
-
     const handleOnComment = () => {
         setOnComment(!onComment)
     }
-
     const handleClickOption = () => {
         setShowOptions(prev => !prev); // Toggle menu tùy chọn
     }
-
     const handleDeletePost = async () => {
-        const data = await deletePost(id); // Gọi API để xóa bài viết
+        const data = await deletePost(postid); // Gọi API để xóa bài viết
         if (data && data.code === 1000) {
             setPostsKey(prev => prev + 1)
         }
@@ -47,8 +47,7 @@ const Post = ({id}) => {
         setShowOptions(false);
     }
     const handleEditPost = async () => {
-        console.log("id", id)
-        const data = await deletePost(id); // Gọi API để xóa bài viết
+        const data = await deletePost(postid); // Gọi API để xóa bài viết
         if (data && data.code === 1000) {
             setPostsKey(prev => prev + 1)
         } else {
@@ -56,29 +55,29 @@ const Post = ({id}) => {
         }
         setShowOptions(false); 
     }
-
-    const getData = async () => {
-        const data = await getAPost(postId);
-        if (data && data.code === 1000) {
-            setPost(data.data)
-            console.log("posterName", data.data.posterName)
-        }
-    }
     useEffect(() => {
+        const getData = async () => {
+            const data = await getAPost(postId);
+            console.log("data in post", data)
+            if (data && data.code === 1000) {
+                setPost(data.data)
+            }
+            else {
+                console.log("data erro", data)
+            }
+        }
         getData();
-    }, [])
-
+    }, [post])
     return (
         <div className="post">
             <div className="header-post" onClick={handleOnclickAvatar}>
                 <div className="post__left">
                     <Avatar/>
                     <div className="poster">
-                        {/* {post.posterName} */}
+                        {post.posterName}
                     </div>
                 </div>
                 <div className="post__right" onClick={handleClickOption}>
-                    
                     {showOptions && (
                         <div className="options-menu">
                             <div className="option-item" onClick={handleDeletePost}>
@@ -92,7 +91,6 @@ const Post = ({id}) => {
                     <SlOptionsVertical />
                 </div>
             </div>
-
             <div className="body-post">
                 <div className="content-post">
                     {post.content}
@@ -101,7 +99,6 @@ const Post = ({id}) => {
                     <img src="/image-2.jpg" className="circle-image" alt="Circle Image"/>
                 </div>
             </div>
-
             <div className="footer-post">
                 <div className="footer-left">
                     <div className="like" onClick={handleLikeClick}>
@@ -120,10 +117,9 @@ const Post = ({id}) => {
                 <div className="footer-right">
                     {
                         onComment && (
-                            <Comments id={id} onClose={handleOnComment} />
+                            <Comments id={postid} onClose={handleOnComment} />
                         )
                     }
-
                     <div className="comment" onClick={handleOnComment}>
                         <FaRegComment />
                     </div>
@@ -133,7 +129,6 @@ const Post = ({id}) => {
                     
                 </div>
             </div>
-            
         </div>
     )
 }
