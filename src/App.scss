@@ -64,29 +64,31 @@ body {
 
   .search__bar {
     justify-content: center;
-    align-items: center;
-    display      : flex;
-    padding      : 5px 10px;
-    border-radius: 20px;
-    border       : 1px solid #ced4da;
-    transition   : border-color 0.3s;
-    flex         : 1; // Make the search bar take up available space
-    max-width    : 400px; // Limit the max width
-    margin       : 0 auto; // Center the search bar
+    align-items    : center;
+    display        : flex;
+    padding        : 5px 10px;
+    border-radius  : 20px;
+    border         : 1px solid #ced4da;
+    transition     : border-color 0.3s;
+    flex           : 1; // Make the search bar take up available space
+    max-width      : 400px; // Limit the max width
+    margin         : 0 auto; // Center the search bar
 
     &:focus {
       border-color: #007bff;
     }
 
     .search__input {
-      flex: 1;
-      border: none;
+      flex   : 1;
+      border : none;
       outline: none;
     }
-    .search__icon{
+
+    .search__icon {
       font-size: 25px;
-      display: flex;
-      &:hover{
+      display  : flex;
+
+      &:hover {
         color: #007bff;
       }
     }
@@ -97,23 +99,26 @@ body {
     display        : flex;
     justify-content: center;
     align-items    : center;
-    .user{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+
+    .user {
+      display        : flex;
+      flex-direction : column;
+      align-items    : center;
       justify-content: center;
-      cursor: pointer;
-      .userName{
-        font-size: 400;
+      cursor         : pointer;
+
+      .userName {
+        font-size  : 400;
         font-weight: 500;
       }
-      .userId{
 
-      }
-      &:hover{
+      .userId {}
+
+      &:hover {
         color: #007bff;
       }
     }
+
     .btn {
       width        : 80px;
       color        : #ced4da;
@@ -153,24 +158,19 @@ body {
   background-color     : #ffffff;
   margin               : 5px 40px 10px 40px;
   grid-template-columns: 35% 65%;
-  height: 100vh;
+  height               : 100vh;
+
   .info {
     flex-direction  : column;
     background-color: #eae2e2;
     overflow        : hidden;
     border-radius   : 15px;
-    display: flex;
-    height: 100%;
-    
-    /* Đảm bảo nội dung không vượt ra ngoài thẻ */
-    // .avatar__profile {
-    //   margin: 10px;
-    //   border-radius  : 15px;
-    //   display        : flex;
-    //   justify-content: center;
-    //   overflow       : hidden;
-    //   /* Đảm bảo hình ảnh không vượt ra ngoài thẻ */
-    // }
+    display         : flex;
+    height          : 100%;
+    display         : flex;
+    align-items     : center;
+    margin-bottom   : 20px;
+    color           : #555;
 
     .avatar__profile img {
       width     : 100%;
@@ -182,20 +182,11 @@ body {
     }
 
     .name__profile {
-      font-size    : 24px;
-      font-weight  : bold;
-      color        : #333;
-      margin: 10px;
+      font-size  : 24px;
+      font-weight: bold;
+      color      : #333;
+      margin     : 10px;
     }
-
-  }
-
-  .info {
-    display       : flex;
-    flex-direction: column;
-    align-items   : center;
-    margin-bottom : 20px;
-    color         : #555;
 
     .date-of-birth,
     .number-follower {
@@ -208,11 +199,17 @@ body {
     }
   }
 
+  .info {}
+
 
   .posts {
-    display: grid;
-    gap    : 20px;
-    width  : 100%;
+    display    : grid;
+    gap        : 20px;
+    width      : 100%;
+    height     : 100%;
+    margin-left: 20px;
+    flex       : 1;
+
   }
 }
 

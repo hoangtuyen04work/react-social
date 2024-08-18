@@ -7,7 +7,7 @@ const postCreateNewUser = (userId, userName, password) => {
         userName: userName,
         password: password
     }
-    return axios.post('socialnetwork/signup', data)
+    return axios.post(`socialnetwork/signup`, data)
 }
 
 const postLogin = (userId, password) => {
@@ -15,7 +15,7 @@ const postLogin = (userId, password) => {
         userId: userId,
         password: password
     }
-    return axios.post('socialnetwork/login', data)
+    return axios.post(`socialnetwork/login`, data)
 }
 
 const getFriends = (id, offset) => {
@@ -26,9 +26,6 @@ const getCountFriend = (id) => {
     return axios.get(`socialnetwork/friend/count/${id}`)
 }
 
-const deleteFriend = (id) => {
-    return axios.delete(`socialnetwork/friend/${id}`)
-}
 
 const postAddFriend = (id) => {
     return axios.post(`socialnetwork/friend/${id}`)
@@ -50,11 +47,30 @@ const editPost = (id) => {
 }
 
 const deletePost = (id) => {
-    return axios.delete(`socialnetwrok/post/delete/${id}`)
+    return axios.delete(`socialnetwork/post/delete/${id}`)
+}
+
+
+
+const deleteFriend = (id) => {
+    return axios.delete(`socialnetwork/friend/${id}`)
+}
+
+const isFriend = (id1, id2) => {
+    return axios.get(`socialnetwork/checkfriend/${id1}/${id2}`)
+}
+
+const findUser = (finded, offset) => {
+    return axios.get(`socialnetwork/find/user/${finded}/${offset}`)
+}
+
+const findPost = (finded, offset) => {
+    return axios.get(`socialnetwork/find/post/${finded}/${offset}`)
 }
 
 export {
     postCreateNewUser, postLogin,
-    getFriends, getCountFriend, deleteFriend, postAddFriend,
+    getFriends, getCountFriend, deleteFriend, postAddFriend, isFriend,
     postNewPost, getAllPost, getAPost, deletePost, editPost, 
+    findUser, findPost
 };

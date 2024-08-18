@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navigate, NavLink } from "react-router-dom";
-import { doLogout, doOffSearch, doOnSearch } from "../../redux/action/userAction";
+import { doLogout, doOffSearch, doOnSearch, doOnSearchUser } from "../../redux/action/userAction";
 import { useDispatch } from "react-redux";
 import Avatar from "../avatar/Avata";
 import {
@@ -11,25 +11,15 @@ import { IoSearchOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { useReload } from "../../context/ReloadContext";
 const Header = () => {
+  const [search_content, setSearch_content] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-
-
-
-
-  const { setPostsKey } = useReload();
-
-
-
-
-  
+  const { setPostsKey, setSearchContent } = useReload();
   const [userId, setUserId] = useState(useSelector(state => state.user.user.userId));
   const [userName, setUserName] = useState(useSelector(state => state.user.user.userName));
+  
   const handleOnChange = (event) => {
-    return (
-      console.log(">>>>> Value" +  event.target.value)
-    )
+    setSearch_content(event.target.value)
   }
   const handleLogoff = () => {
     dispatch(doLogout());
@@ -39,11 +29,14 @@ const Header = () => {
     navigate('/profile')
   }
   const handleHomeClick = () => {
-    dispatch(doOffSearch())
+    dispatch(doOffSearch());
+    dispatch(doOnSearchUser())
     setPostsKey(prevKey => prevKey  + 1)
   }
   const handleSearchClick = () => {
-    dispatch(doOnSearch())
+    dispatch(doOnSearch());
+    setSearchContent(search_content)
+    setPostsKey(prevKey => prevKey + 1)
   }
   return (
     <header className="nav__header">
@@ -57,7 +50,6 @@ const Header = () => {
             <span className="home-header"> Home</span>
           </NavLink>
         </span>
-
         <div className="search__bar">
           <input
             onChange={(event) => handleOnChange(event)}

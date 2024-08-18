@@ -1,7 +1,9 @@
-import Post from "../../components/posts/post/Post";
+import { useReload } from "../../context/ReloadContext";
+import Posts from "../../components/posts/Posts";
 
 
 const Profile = () => {
+    const { postsKey } = useReload();
     return (
         <div className="profile">
             <div className="info">
@@ -27,10 +29,7 @@ const Profile = () => {
                 </div>
             </div>
             <div className="posts">
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+                <Posts key={postsKey} showHeader={false} />
             </div>
         </div>
     )

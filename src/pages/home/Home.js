@@ -14,7 +14,7 @@ const Home = (props) => {
     return (
             <div className="content-container">
                 <Navleft />
-                <Posts key={postsKey} />
+                <Posts key={postsKey} showHeader = {true} />
                 <Navright />
             </div>
     );

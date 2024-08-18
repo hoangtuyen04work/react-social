@@ -43,6 +43,7 @@ const Login = () => {
             dispatch(doLogin(data.data));
         }
         else {
+            console.log(">>data", data);
             setErrors({...errors, title: "UserId not existed or wrong password"})
         }
     }
