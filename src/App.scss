@@ -195,7 +195,6 @@ body {
 
     .number-follower {
       font-size: 18px;
-      color    : #888;
     }
   }
 
@@ -234,6 +233,10 @@ body {
     height       : 100%;
     border-radius: 50%;
     object-fit   : cover;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -249,6 +252,10 @@ body {
     height       : 100%;
     border-radius: 50%;
     object-fit   : cover;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -264,5 +271,9 @@ body {
     height       : 100%;
     border-radius: 50%;
     object-fit   : cover;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }

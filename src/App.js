@@ -19,7 +19,7 @@ const App = () => {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile/>} />
             <Route path="*" element={<Navigate to="/" />} /> {/* Điều hướng về Home nếu không tìm thấy route */}
           </Routes>
         </div>

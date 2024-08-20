@@ -17,6 +17,7 @@ const Header = () => {
   const { setPostsKey, setSearchContent } = useReload();
   const [userId, setUserId] = useState(useSelector(state => state.user.user.userId));
   const [userName, setUserName] = useState(useSelector(state => state.user.user.userName));
+  const [id, setId] = useState(useSelector(state =>state.user.user.id))
   
   const handleOnChange = (event) => {
     setSearch_content(event.target.value)
@@ -26,7 +27,7 @@ const Header = () => {
     navigate('/login')
   }
   const handleProfileClick = () => {
-    navigate('/profile')
+    navigate(`/profile?id=${id}`)
   }
   const handleHomeClick = () => {
     dispatch(doOffSearch());

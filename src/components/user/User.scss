@@ -5,23 +5,38 @@
     overflow-y      : auto;
     background-color: beige;
     margin          : 10px 30px;
+    justify-content : space-between;
 
     /* Đảm bảo thanh cuộn dọc xuất hiện khi cần */
-    .user__avatar {
-        margin: 0px 20px;
+    .right {
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+        .user__avatar {
+            margin: 0px 20px;
+            cursor: pointer;
+        }
+        .user__infor {
+            cursor: pointer;
+            &:hover {
+                opacity: 0.5;
+            }
 
-    }
+            .user__name {
+                font-weight: 500;
 
-    .user__infor {
-        .user__name {}
+            }
 
-        .user__id {}
+            .user__id {}
 
+
+        }
     }
 
     .friend {
-        margin-left: 50px;
+        margin   : 0 50px;
         font-size: 25px;
+
         &:hover {
             color: rgb(99, 105, 216);
         }

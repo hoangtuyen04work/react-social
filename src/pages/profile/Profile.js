@@ -1,9 +1,34 @@
 import { useReload } from "../../context/ReloadContext";
 import Posts from "../../components/posts/Posts";
-
+import { useLocation  } from 'react-router-dom';
+import { useState } from "react";
+import { getUserInfo} from  '../../services/apiServices'; 
+import { useEffect } from "react";
 
 const Profile = () => {
+    const [userName, setUserName] = useState("");
+    const [userId, setUserId] = useState("");
+    const [numberFriend, setNumberFriend] = useState(0);
+    const [numberFollower, setNumberFollower] = useState(0);
     const { postsKey } = useReload();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const id = queryParams.get('id');
+    const [dob, setDob] = useState("");
+
+    useEffect(() => {
+        const getData = async () => {
+            let data = await getUserInfo(id);
+            if (data && data.code === 1000) {
+                setUserName(data.data.userName);
+                setUserId(data.data.userId);
+                setNumberFollower(data.data.numberFollower);
+                setNumberFriend(data.data.numberFriend);
+            }
+        }
+        getData();
+    }, [])
+
     return (
         <div className="profile">
             <div className="info">
@@ -11,25 +36,25 @@ const Profile = () => {
                     <img src="/image-2.jpg"/>
                 </div>
                 <div className="name__profile">
-                    Hoang Huu Tuyen
+                    {userName}
                 </div>
                 <div className="info">
                     <div className="userId">
-                        UserId
+                        {userId}
                     </div>
                     <div className="date-of-birth">
-                        22-2-2002
+                        {dob}
                     </div>
                     <div className="number-follower">
-                        Have 52424 people follower
+                        {numberFollower}  follower
                     </div>
                     <div className="number-following">
-                        Have 52424 people following
+                        {numberFriend}  friend
                     </div>
                 </div>
             </div>
             <div className="posts">
-                <Posts key={postsKey} showHeader={false} />
+                <Posts key={postsKey} showHeader={false} profileid={id} />
             </div>
         </div>
     )

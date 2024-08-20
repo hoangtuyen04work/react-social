@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import Item from '../navItem/Item';
 import './Navright.scss'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Message from '../message/Message';
 
 
@@ -18,11 +18,15 @@ const Navright = () => {
     const handleItemClick = async (id) => {
         setShowMessage(true);
     }
+
+    useEffect(() => {
+        
+    }, [])
     
     return (
         <div className="nav-right">
             <div className="title">
-                Message
+                Notice
             </div>
             <div className="list-item">
                 <Item id = "1" onClick={handleItemClick}/>

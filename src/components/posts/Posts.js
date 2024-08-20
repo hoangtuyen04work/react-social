@@ -9,12 +9,12 @@ import User from '../user/User';
 import { useDispatch } from "react-redux";
 import { doOffSearch, doOnSearchUser, doUnSearchUser } from '../../redux/action/userAction';
 const Posts = (props) => {
-    let page = 1;
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true); // Trạng thái chờ
     const [noneUserFind, setNoneUserFind] = useState("Don't any user like that")
     const [nonePostFind, setNonePostFind] = useState("Don't any post like that")
     const [nonePost, setNonePost] = useState("Don't any post, let's add some friend")
+    const [userNonePost, setUserNonePost] = useState("Don't have any post")
     const [anotation, setAnotation] = useState("");
     const [showHeader, setShowHeader] = useState(props.showHeader)
     const [id, setId] = useState(useSelector(state => state.user.user.id))
@@ -25,23 +25,39 @@ const Posts = (props) => {
     const [newPost, setNewPost] = useState({
         content: ""
     })
+    const [profileid, setProfileid] = useState(props.profileid);
     const { setPostsKey, searchContent } = useReload();
     
     
     useEffect(() => {
         const findPosts = async () => {
-            const data = await findPost(searchContent, 1);
-            if (data && data?.code === 1000) {
-                setPostId(data.data)
+            
+            if (searchContent ) { // Kiểm tra nếu searchContent khác null, undefined hoặc rỗng
+                const data = await findPost(searchContent, 1);
+                if (data && data ?.code === 1000) {
+                    setUserId(data.data);
+                }
+            } else {
+                console.log('searchContent is null or empty');
+                // Bạn có thể xử lý thêm nếu cần, ví dụ như hiển thị thông báo cho người dùng
             }
         }
         const findUsers = async () => {
-            const data = await findUser(searchContent, 1);
-            if (data && data?.code === 1000) {
-                setUserId(data.data)
+            if (searchContent) {  // Kiểm tra nếu searchContent khác null, undefined hoặc rỗng
+                const data = await findUser(searchContent, 1);
+                if (data && data?.code === 1000) {
+                    setUserId(data.data);
+                }
+            } else {
+                console.log('searchContent is null or empty');
+                // Bạn có thể xử lý thêm nếu cần, ví dụ như hiển thị thông báo cho người dùng
             }
         }
         const getData = async () => {
+            if (profileid) {
+                setId(profileid)
+                setAnotation(userNonePost)
+            }
             const data = await getAllPost(id)
             if (data && data.code === 1000) {
                 setPostId(data.data)
@@ -67,9 +83,6 @@ const Posts = (props) => {
         if (data && data.code === 1000) {
             setPostId(prev => [data.data.id, ...prev])
             setPostsKey(prev => prev + 1)
-        }
-        else {
-            alert("can't upload post now")
         }
     }
 
@@ -129,7 +142,7 @@ const Posts = (props) => {
                                             :
                                             userId.map((userid, index) => (
                                                 <div key={index}>
-                                                    <User id={userid}/>
+                                                    <User idd={userid}/>
                                                 </div>))
                                     }
                                 </>

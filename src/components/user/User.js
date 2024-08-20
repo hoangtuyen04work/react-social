@@ -2,56 +2,79 @@ import Avatar from '../avatar/Avata';
 import './User.scss'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useReload } from '../../context/ReloadContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaUserFriends } from "react-icons/fa";
 import { IoIosPersonAdd } from "react-icons/io";
-const User = (props) => {
-    const dispatch = useDispatch();
-    const [id, setId] = useState(props.id);
-    const navigate = useNavigate();
-    const handleOnclickAvatar = () => {
-        navigate(`/profile?id=${id}`)
-    }
-    const [isFriend, setIsFriend] = useState(false);
-    useEffect(() => {
+import { follow, getUserInfo, unfollow, checkFollowing } from '../../services/apiServices';
+import { ImUserCheck } from "react-icons/im";
 
-        const checkIsFriend = async (id2) => {
-            const data = await isFriend(id, id2);
+const User = ({idd}) => {
+    const [userName, setUserName] = useState("");
+    const [userId, setUserId] = useState("");
+    const dispatch = useDispatch();
+    const [id2, setId2] = useState(idd);
+    const navigate = useNavigate();
+    const [id, setId] = useState(useSelector(state => state.user.user.id))
+    const handleOnclickAvatar = () => {
+        navigate(`/profile?id=${id2}`)
+    }
+    const [isFollowing, setIsFollowing] = useState(false);
+    useEffect(() => {
+        const checkFollowings = async () => {
+            const data = await checkFollowing(id, idd);
             if (data && data.code === 1000) {
                 if (data.data === true) {
-                    setIsFriend(true)
+                    setIsFollowing(true)
                 }
                 else {
-                    setIsFriend(false)
+                    setIsFollowing(false)
                 }
             }
-            else {
-                alert("can't get data now")
-            }
-
-            alert("can't get data now")
         }
-    })
+
+        const getInfoUser = async () => {
+            const data = await getUserInfo(id2);
+            if (data && data.code === 1000) {
+                setUserName(data.data.userName);
+                setUserId(data.data.userId)
+            }
+        }
+
+        checkFollowings();
+        getInfoUser();
+    }, []);
+
+    const handleFollow = async () => {
+        if (isFollowing === false) {
+            await follow(id2)
+        }
+        else {
+            console.log("unfollow", await unfollow(id2))
+        }
+        setIsFollowing(prev => !prev)
+    }
+
     
 
     return (
         <div className="user__find">
-            <div className="user__avatar">
+
+            <div className="right">
+            <div className = "user__avatar"onClick = {handleOnclickAvatar} >
                 <Avatar/>
             </div>
-            <div className="user__infor">
+            < div className = "user__infor" onClick = {handleOnclickAvatar} >
                 <div className="user__name">
-                    UserName
+                    {userName}
                 </div>
                 <div className="user__id">
-                    UserId
+                    {userId}
                 </div>
             </div>
-            <div className="friend">
+            </div>
+            <div key={isFollowing} className="friend" onClick={handleFollow}>
                 {
-                    isFriend ? 
-                        <FaUserFriends />
+                    isFollowing ? 
+                        <ImUserCheck />
                         :
                         <IoIosPersonAdd />
                 }
