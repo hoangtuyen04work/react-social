@@ -8,9 +8,11 @@ import { useReload } from '../../context/ReloadContext';
 import User from '../user/User';
 import { useDispatch } from "react-redux";
 import { doOffSearch, doOnSearchUser, doUnSearchUser } from '../../redux/action/userAction';
+import PacmanLoader from "react-spinners/PacmanLoader";
+import ClockLoader from "react-spinners/ClockLoader";
 const Posts = (props) => {
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true); // Trạng thái chờ
+    const [isLoading, setIsLoading] = useState(true);
     const [noneUserFind, setNoneUserFind] = useState("Don't any user like that")
     const [nonePostFind, setNonePostFind] = useState("Don't any post like that")
     const [nonePost, setNonePost] = useState("Don't any post, let's add some friend")
@@ -23,7 +25,8 @@ const Posts = (props) => {
     const [postId, setPostId] = useState([]);
     const [userId, setUserId] = useState([])
     const [newPost, setNewPost] = useState({
-        content: ""
+        content: "",
+        image: null
     })
     const [profileid, setProfileid] = useState(props.profileid);
     const { setPostsKey, searchContent } = useReload();
@@ -76,18 +79,50 @@ const Posts = (props) => {
             setAnotation(nonePost)
             getData();
         }
-        setLoading(false);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
     }, [])
     const handleUploadPost = async () => {
-        let data = await postNewPost(newPost);
+        const formData = new FormData();
+        formData.append("content", newPost.content);
+        if (newPost.image) {
+            formData.append("image", newPost.image);
+        }
+        let formdata = {
+            content: newPost.content,
+            multipartFile: newPost.image
+            }
+        
+        let data = await postNewPost(formdata);
         if (data && data.code === 1000) {
-            setPostId(prev => [data.data.id, ...prev])
-            setPostsKey(prev => prev + 1)
+            setPostId(prev => [data.data.id, ...prev]);
+            setPostsKey(prev => prev + 1);
+            setNewPost({
+                content: "",
+                image: null
+            }); // Reset the form after successful post
         }
     }
 
+
     const handleOnChangeNewPost = (event) => {
-        setNewPost({content: event.target.value})
+        const {
+            name,
+            value,
+            files
+        } = event.target;
+        if (name === "content") {
+            setNewPost(prev => ({
+                ...prev,
+                content: value
+            }));
+        } else if (name === "image" && files.length > 0) {
+            setNewPost(prev => ({
+                ...prev,
+                image: files[0]
+            }));
+        }
     }
 
     const handleClickFindPost = () => {
@@ -98,9 +133,7 @@ const Posts = (props) => {
         dispatch(doOnSearchUser())
         setPostsKey(prevKey => prevKey + 1)
     }
-    if (loading) {
-        return <div>Loading...</div>; // Hiển thị khi đang chờ
-    }
+    
     return (
         <div className="post__container">
             {showHeader &&
@@ -120,7 +153,18 @@ const Posts = (props) => {
                     </div>
                     :
                     <div className="post__new">
-                        <input value={newPost.content}type="text" placeholder='Write your story' className="new-post" onChange={handleOnChangeNewPost} />
+                        <input
+                            value={newPost.content}
+                            name="content"
+                            type="text" 
+                            placeholder="Write your story" 
+                            className="new-post" 
+                            onChange={handleOnChangeNewPost} 
+                        />
+                        <div className="file__input">
+                            <label className = "buttonz" htmlFor = "upload" > Upload Image </label>
+                            < input id="upload" className = "input__image" name = "image" type = "file"accept = "image/*"onChange = {handleOnChangeNewPost}/>
+                        </div>
                         <div className="send__icon" onClick={handleUploadPost}>
                             <IoSendOutline />
                         </div>

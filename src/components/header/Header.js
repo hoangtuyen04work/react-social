@@ -10,6 +10,7 @@ import { FaHome } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { useReload } from "../../context/ReloadContext";
+
 const Header = () => {
   const [search_content, setSearch_content] = useState("");
   const navigate = useNavigate();
@@ -17,7 +18,8 @@ const Header = () => {
   const { setPostsKey, setSearchContent } = useReload();
   const [userId, setUserId] = useState(useSelector(state => state.user.user.userId));
   const [userName, setUserName] = useState(useSelector(state => state.user.user.userName));
-  const [id, setId] = useState(useSelector(state =>state.user.user.id))
+  const [id, setId] = useState(useSelector(state => state.user.user.id))
+
   
   const handleOnChange = (event) => {
     setSearch_content(event.target.value)

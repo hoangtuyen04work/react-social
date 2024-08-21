@@ -30,9 +30,22 @@ const getCountFriend = (id) => {
 const postAddFriend = (id) => {
     return axios.post(`socialnetwork/friend/${id}`)
 }
+
+
+
 const postNewPost = (data) => {
-    return axios.post(`socialnetwork/post/new`, data)
-}
+    const formData = new FormData();
+    formData.append('content', data.content);
+    if (data.multipartFile) {
+        formData.append('multipartFile', data.multipartFile);
+    } // Đây là file cần upload
+    console.log("FORM DATA" + formData)
+    return axios.post('socialnetwork/post/new', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+    });
+};
 
 const getAllPost = (id) => {
     return axios.get(`socialnetwork/posts/${id}`)

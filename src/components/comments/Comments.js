@@ -19,19 +19,17 @@ const Comments = ({ id, onClose, addComments }) => {
                 setComments(data.data)
             }
         }
-        
-        
         getData();
     }, [])
     const handleUploadComment = async () => {
         if (content.trim()) { // Check if the comment is not empty
             try {
                 let data = await addComment(id, content);
-                console.log("thisis data", data)
                 if (data && data.code === 1000) {
                     let newComment = {
                         commenterName: userName,
-                        content: content, // Ensure to include the actual comment content
+                        content: content,
+                        id: id// Ensure to include the actual comment content
                         // Include other fields as necessary
                     };
                     setComments(prev => [newComment, ...prev]);
@@ -60,7 +58,7 @@ const Comments = ({ id, onClose, addComments }) => {
     }
 
     return (
-        <div key = {id}className = "comments-container" >
+        <div  className = "comments-container" >
             <div className="comments-header">
                 <div className="comment-title">
                     Comments
@@ -77,10 +75,10 @@ const Comments = ({ id, onClose, addComments }) => {
                                 <SmallAvatar/>
                             </div>
                             <div className = "comment-comments" >
-                                <div className = "comment__sender" onClick = {() => handleAvatarClick(cmt.commenterId)} >
+                                <div  className = "comment__sender" onClick = {() => handleAvatarClick(cmt.commenterId)} >
                                     {cmt.commenterName}
                                 </div>
-                                <div className="comment__content">
+                                <div className="comment__content" >
                                     {cmt.content}
                                 </div>
                             </div>

@@ -18,7 +18,8 @@ const Post = ({ postid }) => {
     const [post, setPost] = useState({
         posterName: "",
         content: "",
-        posterId: ""
+        posterId: "",
+        imageUrl: ""
     });
     const [showOptions, setShowOptions] = useState(false); // State để điều khiển hiển thị menu tùy chọn
     const navigate = useNavigate();
@@ -72,6 +73,7 @@ const Post = ({ postid }) => {
     useEffect(() => {
         const getData = async () => {
             const data = await getAPost(postId);
+            console.log(data)
             if (data && data.code === 1000) {
                 setPost(data.data)
             }
@@ -118,7 +120,10 @@ const Post = ({ postid }) => {
                     {post.content}
                 </div>
                 <div className="image">
-                    <img src="/image-2.jpg" className="circle-image" alt="Circle Image"/>
+                    {
+                        post.imageUrl && 
+                        <img src={post.imageUrl} className="circle-image" alt="Circle Image"/>
+                    }
                 </div>
             </div>
             <div className="footer-post">
