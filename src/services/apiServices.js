@@ -47,8 +47,12 @@ const postNewPost = (data) => {
     });
 };
 
-const getAllPost = (id) => {
+const getMyPosts = (id) => {
     return axios.get(`socialnetwork/posts/${id}`)
+}
+
+const getPostHome = (id) => {
+    return axios.get(`socialnetwork/post/home/${id}`)
 }
 
 const getAPost = (id) => {
@@ -164,7 +168,7 @@ export {
     like, countLike, checkLike,
     postCreateNewUser, postLogin,
     getFriends, getCountFriend, deleteFriend, postAddFriend, isFriend,
-    postNewPost, getAllPost, getAPost, deletePost, editPost, findPost,
+    postNewPost, getMyPosts, getAPost, deletePost, editPost, findPost, getPostHome,
     findUser, deleteUser, editUser, getUserInfo, 
     checkFollowing, follow, unfollow, countFollower, countFollowing,
 

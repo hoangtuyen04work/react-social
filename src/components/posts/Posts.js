@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react'
 import './Posts.scss'
 import Post from "./post/Post"
 import { IoSendOutline } from "react-icons/io5";
-import { getAllPost, getAPost, postNewPost , findPost, findUser} from '../../services/apiServices';
+import { getAllPost, getAPost, postNewPost , findPost, findUser, getMyPosts, getPostHome} from '../../services/apiServices';
 import { useSelector } from 'react-redux';
 import { useReload } from '../../context/ReloadContext';
 import User from '../user/User';
 import { useDispatch } from "react-redux";
 import { doOffSearch, doOnSearchUser, doUnSearchUser } from '../../redux/action/userAction';
-import PacmanLoader from "react-spinners/PacmanLoader";
-import ClockLoader from "react-spinners/ClockLoader";
+
 const Posts = (props) => {
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +23,7 @@ const Posts = (props) => {
     const [isSearchUser, setIsSearchUser] = useState(useSelector(state => state.user.isSearchUser));
     const [postId, setPostId] = useState([]);
     const [userId, setUserId] = useState([])
+    const [isProfile, setIsProfile] = useState(props.isProfile)
     const [newPost, setNewPost] = useState({
         content: "",
         image: null
@@ -61,11 +61,21 @@ const Posts = (props) => {
                 setId(profileid)
                 setAnotation(userNonePost)
             }
-            const data = await getAllPost(id)
-            if (data && data.code === 1000) {
-                setPostId(data.data)
+            if (isProfile) {
+                const data = await getMyPosts(id)
+                if (data && data.code === 1000) {
+                    setPostId(data.data)
+                    console.log("profile", data)
+                }
             }
-            
+            else {
+                const data = await getPostHome(id);
+                if (data && data.code === 1000) {
+                    setPostId(data.data)
+                    console.log("home", data)
+                }
+            }
+            console.log(postId)
         }
         if (isSearch === true && isSearchUser === true) {
             setAnotation(noneUserFind)

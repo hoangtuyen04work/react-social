@@ -54,7 +54,7 @@ const Profile = () => {
                 </div>
             </div>
             <div className="posts">
-                <Posts key={postsKey} showHeader={false} profileid={id} />
+                <Posts key={postsKey} showHeader={false} profileid={id} isProfile={true} />
             </div>
         </div>
     )
